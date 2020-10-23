@@ -54,7 +54,7 @@ def dionaea_connections(identifier, payload, gi):
         print 'exception processing dionaea connection'
         traceback.print_exc()
         return
-    return create_message('dionaea.connections', identifier, gi, src_ip=dec.remote_host, dst_ip=dec.local_host)
+    return create_message('dionaea.connections', identifier, gi, src_ip=dec.remote_host, dst_ip=dec.local_host, dst_ip=dec.daddr)
 
 def beeswarm_hive(identifier, payload, gi):
     try:
@@ -72,7 +72,7 @@ def cowrie_sessions(identifier, payload, gi):
         print 'exception processing cowrie event'
         traceback.print_exc()
         return
-    return create_message('cowrie.sessions', identifier, gi, src_ip=dec.peerIP, dst_ip=dec.hostIP)
+    return create_message('cowrie.sessions', identifier, gi, src_ip=dec.peerIP, dst_ip=dec.hostIP, protocol=dec.hostPort)
 
 def kippo_sessions(identifier, payload, gi):
     try:
@@ -158,7 +158,7 @@ def agave_events(identifier, payload, gi):
             dst_ip=dec.DestIp)
 
 # TODO: use this function everywhere else is can be to clean up this code.
-def create_message(event_type, identifier, gi, src_ip, dst_ip):
+def create_message(event_type, identifier, gi, src_ip, dst_ip, protocol=None):
     geo = gi.city(src_ip)
     geo2 = gi.city(dst_ip)
 
@@ -180,6 +180,11 @@ def create_message(event_type, identifier, gi, src_ip, dst_ip):
         'country2':     geo2.country.name, 
         'countrycode2': geo2.country.iso_code
     }
+    
+    if protocol:
+        message.update({
+            'protocol': protocol
+        })
 
     return message
 
