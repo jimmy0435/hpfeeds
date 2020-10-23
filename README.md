@@ -1,6 +1,11 @@
 hpfeeds
 =======
 
+## Customize
+Modify exameples/geoloc/processors.py to support honeymap with protocol field
+
+
+
 Check out our hpfeeds setup with a social sharing model: http://hpfriends.honeycloud.net/
 
 There is a nice introduction by heipei to be read here: http://heipei.github.io/2013/05/11/Using-hpfriends-the-social-data-sharing-platform/
