@@ -2,7 +2,7 @@ hpfeeds
 =======
 
 ## Customize
-##Modify exameples/geoloc/processors.py to support honeymap with protocol field
+## Modify exameples/geoloc/processors.py to support honeymap with protocol field
 
 
 
